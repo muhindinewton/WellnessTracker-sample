@@ -41,14 +41,12 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const register = async (userData) => {
+    const register = async (userData) => {
     setLoading(true);
     try {
       const response = await api.register(userData);
-      setUser(response.user);
-      localStorage.setItem('currentUser', JSON.stringify(response.user));
-      localStorage.setItem('accessToken', response.access_token);
-      setCurrentRoute('/dashboard');
+      // On successful registration, redirect to the login page
+      setCurrentRoute('/login');
       return response;
     } catch (error) {
       throw error;
