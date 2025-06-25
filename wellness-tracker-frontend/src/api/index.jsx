@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000'; // Ensure this matches your Flask backend URL
+const API_BASE_URL = 'https://wellnesstracker-sample-backend.onrender.com';
 
 const api = {
   // Helper to make authenticated requests
