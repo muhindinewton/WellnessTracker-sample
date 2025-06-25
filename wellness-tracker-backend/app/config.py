@@ -1,6 +1,11 @@
-# app/config.py
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load .env file from the project root
+project_root = Path(__file__).parent.parent  # adjust if needed
+load_dotenv(dotenv_path=project_root / '.env', override=True)
 
 class Config:
     """
