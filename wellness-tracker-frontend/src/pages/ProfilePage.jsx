@@ -3,7 +3,7 @@ import { Edit2 } from 'lucide-react';
 import { useApp } from '../appContext';
 
 const ProfilePage = () => {
-  const { user, logout, api } = useApp();
+  const { user, logout, api, updateUser } = useApp();
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || '',
@@ -25,8 +25,8 @@ const ProfilePage = () => {
       const response = await api.updateUserProfile(formData);
       // Update user in context and local storage
       localStorage.setItem('currentUser', JSON.stringify(response.user));
-      // Optionally, refresh user state in AppContext if necessary, though
-      // direct modification to localStorage is picked up by AppProvider's useEffect
+      // Update the user state in the context and local storage
+      updateUser(response.user);
       setEditing(false);
     } catch (err) {
       setError(err.message || 'Failed to update profile');

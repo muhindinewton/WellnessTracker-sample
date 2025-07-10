@@ -66,6 +66,17 @@ export const AppProvider = ({ children }) => {
     setCurrentRoute(route);
   };
 
+  const updateUser = (userData) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      ...userData
+    }));
+    localStorage.setItem('currentUser', JSON.stringify({
+      ...JSON.parse(localStorage.getItem('currentUser')),
+      ...userData
+    }));
+  };
+
   return (
     <AppContext.Provider value={{
       user,
@@ -75,6 +86,7 @@ export const AppProvider = ({ children }) => {
       register,
       logout,
       navigate,
+      updateUser,
       api
     }}>
       {children}
